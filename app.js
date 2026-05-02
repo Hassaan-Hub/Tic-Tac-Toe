@@ -42,13 +42,13 @@ boxes.forEach((box) => {
 })
 
 const disabledBoxes = () => {
-    for(let box of boxes){
+    for (let box of boxes) {
         box.disabled = true;
     }
 }
 
 const enableBoxes = () => {
-    for(let box of boxes){
+    for (let box of boxes) {
         box.disabled = false;
         box.innerText = "";
     }
@@ -56,10 +56,16 @@ const enableBoxes = () => {
 
 // hide message show Winner
 const showWinner = (winner) => {
-    msg.innerText = `Congratulations, Winner is ${winner}`
-    msgContainer.classList.remove("hide")
-    disabledBoxes()
-}
+    Swal.fire({
+        title: "Winner!",
+        text: `${winner} wins the game`,
+        icon: "success"
+    });
+
+    msgContainer.classList.remove("hide");
+    disabledBoxes();
+};
+
 
 // check Winner
 const checkWinner = () => {
@@ -75,6 +81,22 @@ const checkWinner = () => {
                 showWinner(pos1Val)
             }
         }
+    }
+
+    let draw = true;
+    for (let box of boxes) {
+        if (box.innerText === "") {
+            draw = false;
+            break;
+        }
+    }
+    if (draw) {
+        Swal.fire({
+            title: "It's a Draw!",
+            text: "The game ended in a draw.",
+            icon: "info"
+        });
+        
     }
 };
 
