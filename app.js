@@ -56,6 +56,7 @@ const enableBoxes = () => {
 
 // hide message show Winner
 const showWinner = (winner) => {
+    msg.innerText = `${winner} wins the game`;
     Swal.fire({
         title: "Winner!",
         text: `${winner} wins the game`,
@@ -96,7 +97,7 @@ const checkWinner = () => {
             text: "The game ended in a draw.",
             icon: "info"
         });
-        
+        resetGame()
     }
 };
 
